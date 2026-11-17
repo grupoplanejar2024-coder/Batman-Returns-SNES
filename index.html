@@ -9,29 +9,46 @@
         body, html { margin: 0; padding: 0; width: 100%; min-height: 100%; background-color: #121212; color: #fff; font-family: Arial, sans-serif; }
         header { text-align: center; padding: 15px; background: #1e1e1e; }
         .badge { background: #333333; color: #fff; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 14px; border: 1px solid #555; }
-        #game-card { max-width: 450px; margin: 20px auto; background: #1e1e1e; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.6); }
         
-        /* Simula a carcaça de um cartucho de Super Nintendo com o adesivo no centro */
-        .cartridge-shell {
+        #game-card { max-width: 420px; margin: 20px auto; background: #1e1e1e; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.6); }
+        
+        /* Simulação perfeita do cartucho físico do Super Nintendo */
+        .snes-cartridge {
             width: 100%;
-            background: #b5b5be; /* Cor cinza clássica do plástico do SNES */
-            padding: 25px 20px;
+            background-color: #b8b8c0; /* Cor clássica do plástico cinza do SNES */
+            padding: 22px 30px 18px 30px;
+            box-shadow: inset 0 -8px 12px rgba(0,0,0,0.25), inset 0 4px 6px rgba(255,255,255,0.4);
+            border-bottom: 4px solid #2a2a30;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.3);
-            border-bottom: 4px solid #333;
         }
 
-        .cover-container { 
-            width: 85%; 
-            height: 170px; 
+        /* Ranhuras em relevo características do topo do cartucho americano do SNES */
+        .cartridge-ridges {
+            width: 100%;
+            height: 10px;
+            background: repeating-linear-gradient(
+                90deg,
+                #9a9a9f,
+                #9a9a9f 12px,
+                #b8b8c0 12px,
+                #b8b8c0 16px
+            );
+            margin-bottom: 12px;
+            border-radius: 2px;
+        }
+
+        /* O adesivo da label colado no cartucho */
+        .cartridge-label { 
+            width: 100%; 
+            height: 185px; 
             background-image: url('Batman-Returns.jpg');[cite: 12]
             background-size: cover; 
             background-repeat: no-repeat; 
             background-position: center; 
-            border: 4px solid #1a1a1a; /* Borda preta clássica do rótulo do cartucho */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+            border: 3px solid #111; /* Borda preta clássica da label */
+            box-shadow: 0 3px 6px rgba(0,0,0,0.4);
             border-radius: 2px;
         }
 
@@ -82,9 +99,10 @@
     </header>
 
     <div id="game-card">
-        <!-- Visual de cartucho físico do SNES -->
-        <div class="cartridge-shell">
-            <div class="cover-container"></div>
+        <!-- Visual do Cartucho do Super Nintendo -->
+        <div class="snes-cartridge">
+            <div class="cartridge-ridges"></div>
+            <div class="cartridge-label"></div>
         </div>
         
         <div class="content">
@@ -122,11 +140,11 @@
             var container = document.getElementById('game-container');
             container.style.display = 'block';
 
-            // Configuração do EmulatorJS com o controle clássico do Super Nintendo
+            // Configuração do EmulatorJS com as cores clássicas do controle do SNES
             window.EJS_player = '#game';
             window.EJS_core = 'snes9x';
             window.EJS_gameName = 'Batman Returns';
-            window.EJS_color = '#4b4b56'; // Tom cinza do controle clássico do SNES
+            window.EJS_color = '#4b4b56'; 
             window.EJS_startOnLoaded = true;
             window.EJS_pathtodata = 'https://cdn.emulatorjs.org/stable/data/';
             window.EJS_gameUrl = 'Batman%20Returns%20%28USA%29.sfc';
@@ -139,3 +157,4 @@
     </script>
 </body>
 </html>
+
